@@ -11,6 +11,7 @@ from segment_anything import SamAutomaticMaskGenerator, sam_model_registry
 import argparse
 import json
 import os
+import torch
 from typing import Any, Dict, List
 
 parser = argparse.ArgumentParser(
@@ -230,6 +231,7 @@ def main(args: argparse.Namespace) -> None:
             save_file = save_base + ".json"
             with open(save_file, "w") as f:
                 json.dump(masks, f)
+        torch.cuda.empty_cache()
     print("Done!")
 
 
